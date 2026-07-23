@@ -47,6 +47,17 @@ function aromaoel_customize_register( $wp_customize ) {
 		'settings' => 'aromaoel_story_image',
 	) ) );
 
+	// Image Hero — page Rituels
+	$wp_customize->add_setting( 'aromaoel_rituels_hero_image', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'aromaoel_rituels_hero_image', array(
+		'label'    => __( 'Image du Hero (page Rituels)', 'aroma-oel' ),
+		'section'  => 'aromaoel_images',
+		'settings' => 'aromaoel_rituels_hero_image',
+	) ) );
+
 	/* ============ SECTION RÉSEAUX SOCIAUX ============ */
 	$wp_customize->add_section( 'aromaoel_social', array(
 		'title'    => __( 'AROMA OËL — Réseaux sociaux', 'aroma-oel' ),
@@ -70,6 +81,26 @@ function aromaoel_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'aromaoel_instagram_url', array(
 		'label'    => __( 'URL Instagram', 'aroma-oel' ),
+		'section'  => 'aromaoel_social',
+		'type'     => 'url',
+	) );
+
+	$wp_customize->add_setting( 'aromaoel_linkedin_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+	$wp_customize->add_control( 'aromaoel_linkedin_url', array(
+		'label'    => __( 'URL LinkedIn', 'aroma-oel' ),
+		'section'  => 'aromaoel_social',
+		'type'     => 'url',
+	) );
+
+	$wp_customize->add_setting( 'aromaoel_snapchat_url', array(
+		'default'           => '',
+		'sanitize_callback' => 'esc_url_raw',
+	) );
+	$wp_customize->add_control( 'aromaoel_snapchat_url', array(
+		'label'    => __( 'URL Snapchat', 'aroma-oel' ),
 		'section'  => 'aromaoel_social',
 		'type'     => 'url',
 	) );

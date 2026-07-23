@@ -9,9 +9,9 @@
 <?php wp_body_open(); ?>
 
 <?php
-// Le header transparent-sur-image ne s'applique qu'à l'accueil (qui a un hero avec image de fond).
-// Sur les autres pages, le header reste classique, opaque dès le départ.
-$is_transparent_header = is_front_page();
+// Le header transparent-sur-image s'applique à l'accueil et à la page Rituels
+// (les deux seules pages avec un hero plein écran pour l'instant).
+$is_transparent_header = is_front_page() || is_page_template( 'page-rituels.php' );
 ?>
 
 <header class="site-header <?php echo $is_transparent_header ? 'site-header--transparent' : ''; ?>">
