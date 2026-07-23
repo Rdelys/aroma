@@ -1,0 +1,23 @@
+# Configuration WordPress
+wp-config.php
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+error_log
+
+# Environnement
+.env
+.env.*
+
+# Dépendances Node
+node_modules/
+
+# Dépendances Composer (si tu ne les versionnes pas)
+vendor/
+
+# Cache
+.cache/
