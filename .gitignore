@@ -21,3 +21,4 @@ vendor/
 
 # Cache
 .cache/
+wp-content/uploads/
