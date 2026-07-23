@@ -8,10 +8,14 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="site-header">
-	<div class="header-inner">
+<?php
+// Le header transparent-sur-image ne s'applique qu'à l'accueil (qui a un hero avec image de fond).
+// Sur les autres pages, le header reste classique, opaque dès le départ.
+$is_transparent_header = is_front_page();
+?>
 
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">AROMA OËL</a>
+<header class="site-header <?php echo $is_transparent_header ? 'site-header--transparent' : ''; ?>">
+	<div class="header-inner">
 
 		<nav class="main-nav" aria-label="Menu principal" id="main-nav">
 
@@ -31,7 +35,6 @@
 					'walker'         => new Aromaoel_Nav_Walker(),
 				) );
 			} else {
-				// Menu de secours si aucun menu n'est encore configuré dans Apparence > Menus
 				echo '<ul>
 					<li class="menu-item-has-children">
 						<a href="' . esc_url( home_url( '/rituels/' ) ) . '">Rituels</a>
@@ -68,7 +71,12 @@
 			</div>
 		</nav>
 
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo site-logo--center">AROMA OËL</a>
+
 		<div class="header-icons">
+			<span class="lang-switch lang-switch--desktop">
+				<a href="#">FR</a> <span aria-hidden="true">|</span> <a href="#">EN</a>
+			</span>
 			<a href="#" aria-label="Recherche"><i class="ti ti-search" aria-hidden="true"></i></a>
 			<a href="<?php echo function_exists('wc_get_page_permalink') ? esc_url( wc_get_page_permalink('myaccount') ) : '#'; ?>" aria-label="Mon compte"><i class="ti ti-user" aria-hidden="true"></i></a>
 			<a href="<?php echo function_exists('wc_get_cart_url') ? esc_url( wc_get_cart_url() ) : '#'; ?>" aria-label="Panier" class="cart-link">
@@ -77,10 +85,6 @@
 					<span class="cart-count"><?php echo WC()->cart ? WC()->cart->get_cart_contents_count() : 0; ?></span>
 				<?php endif; ?>
 			</a>
-			<span class="lang-switch lang-switch--desktop">
-				<a href="#">FR</a> | <a href="#">EN</a>
-				<!-- Remplacer par les liens générés par Polylang/WPML une fois installé -->
-			</span>
 			<button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
 				<i class="ti ti-menu-2" aria-hidden="true"></i>
 			</button>

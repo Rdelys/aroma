@@ -5,18 +5,34 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 get_header();
+
+$hero_img  = get_theme_mod( 'aromaoel_hero_image' );
+$philo_img = get_theme_mod( 'aromaoel_philo_image' );
+$story_img = get_theme_mod( 'aromaoel_story_image' );
 ?>
 
 <main>
 
 	<!-- BLOC 01 — HERO -->
-	<section class="hero">
-		<div class="hero-icon"><i class="ti ti-droplet" aria-hidden="true" style="font-size:28px;color:var(--vert);"></i></div>
-		<h1>Des rituels naturels, simples et purs</h1>
-		<p>AROMA OËL, maison française de rituels naturels. Huiles essentielles, huiles végétales et poudres sélectionnées avec exigence, pour accompagner vos moments de vie. PURE BY NATURE — la pureté, sans compromis.</p>
-		<div class="hero-cta">
-			<a href="<?php echo esc_url( home_url( '/rituels/' ) ); ?>" class="btn btn--primary">Découvrir les rituels</a>
-			<a href="<?php echo esc_url( home_url( '/boutique/' ) ); ?>" class="btn btn--secondary">Explorer la boutique</a>
+	<section class="hero <?php echo $hero_img ? 'hero--has-image' : ''; ?>"
+		<?php if ( $hero_img ) : ?>
+		style="background-image:linear-gradient(180deg, rgba(110,88,70,.15), rgba(110,88,70,.55)), url('<?php echo esc_url( $hero_img ); ?>');"
+		<?php endif; ?>>
+		<div class="hero-content">
+			<?php if ( ! $hero_img ) : ?>
+				<div class="hero-icon"><i class="ti ti-droplet" aria-hidden="true" style="font-size:28px;color:var(--vert);"></i></div>
+			<?php endif; ?>
+			<span class="eyebrow">Maison française de rituels naturels</span>
+			<h1>Des rituels naturels, simples et purs</h1>
+			<p>Huiles essentielles, huiles végétales et poudres sélectionnées avec exigence, pour accompagner vos moments de vie. PURE BY NATURE — la pureté, sans compromis.</p>
+			<div class="hero-cta">
+				<a href="<?php echo esc_url( home_url( '/rituels/' ) ); ?>" class="btn btn--primary">Découvrir les rituels</a>
+				<a href="<?php echo esc_url( home_url( '/boutique/' ) ); ?>" class="btn btn--secondary <?php echo $hero_img ? 'btn--on-image' : ''; ?>">Explorer la boutique</a>
+			</div>
+		</div>
+		<div class="hero-scroll-cue" aria-hidden="true">
+			<span>Découvrir</span>
+			<i class="ti ti-chevron-down"></i>
 		</div>
 	</section>
 
@@ -24,13 +40,17 @@ get_header();
 	<section class="section">
 		<div class="container philo">
 			<div class="philo-text">
+				<span class="eyebrow eyebrow--dark">Notre philosophie</span>
 				<h2>La philosophie AROMA OËL</h2>
 				<p>AROMA OËL est une maison française de rituels naturels. Nous croyons que les gestes simples sont ceux qui durent : quelques gouttes dans un diffuseur, une huile chauffée entre les mains, un masque préparé le dimanche soir. C'est pourquoi nous parlons de rituels avant de parler de produits — parce qu'une huile ne prend tout son sens que dans le moment qu'elle accompagne.</p>
 				<a href="<?php echo esc_url( home_url( '/notre-histoire/' ) ); ?>" class="btn btn--secondary btn--small">Découvrir notre histoire</a>
 			</div>
 			<div class="philo-img">
-				<i class="ti ti-photo" aria-hidden="true"></i>
-				<span class="sr-only">Mains versant quelques gouttes d'huile AROMA OËL, geste de rituel naturel</span>
+				<?php if ( $philo_img ) : ?>
+					<img src="<?php echo esc_url( $philo_img ); ?>" alt="Mains versant quelques gouttes d'huile AROMA OËL, geste de rituel naturel" loading="lazy">
+				<?php else : ?>
+					<i class="ti ti-photo" aria-hidden="true"></i>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
@@ -39,8 +59,9 @@ get_header();
 	<section class="section section--alt">
 		<div class="container">
 			<div class="section-intro">
-				<h2>Essential Rituals</h2>
-				<p>Trois rituels d'huiles essentielles, quatre flacons chacun, un roll-on rechargeable de 10 ml offert (livré vide).</p>
+				<span class="eyebrow eyebrow--dark">Essential Rituals</span>
+				<h2>Trois rituels d'huiles essentielles</h2>
+				<p>Quatre flacons chacun, un roll-on rechargeable de 10 ml offert (livré vide).</p>
 			</div>
 			<div class="grid-3">
 				<div class="card-ritual card-ritual--essential">
@@ -72,8 +93,9 @@ get_header();
 	<section class="section">
 		<div class="container">
 			<div class="section-intro">
-				<h2>Botanical Rituals</h2>
-				<p>Trois rituels de soin, autour d'huiles végétales et de poudres complémentaires.</p>
+				<span class="eyebrow eyebrow--dark">Botanical Rituals</span>
+				<h2>Trois rituels de soin</h2>
+				<p>Autour d'huiles végétales et de poudres complémentaires.</p>
 			</div>
 			<div class="grid-3">
 				<div class="card-ritual card-ritual--botanical">
@@ -105,6 +127,7 @@ get_header();
 	<section class="section section--alt">
 		<div class="container">
 			<div class="section-intro">
+				<span class="eyebrow eyebrow--dark">Notre boutique</span>
 				<h2>Nos produits</h2>
 				<p>Pour découvrir, compléter ou renouveler un rituel — chaque produit est aussi disponible à l'unité.</p>
 			</div>
@@ -150,11 +173,15 @@ get_header();
 	<section class="section section--alt">
 		<div class="container story">
 			<div class="story-img">
-				<i class="ti ti-photo" aria-hidden="true"></i>
-				<span class="sr-only">Atelier AROMA OËL, flacons et matières naturelles en lumière douce</span>
+				<?php if ( $story_img ) : ?>
+					<img src="<?php echo esc_url( $story_img ); ?>" alt="Atelier AROMA OËL, flacons et matières naturelles en lumière douce" loading="lazy">
+				<?php else : ?>
+					<i class="ti ti-photo" aria-hidden="true"></i>
+				<?php endif; ?>
 			</div>
 			<div class="story-text">
-				<h2>Notre histoire</h2>
+				<span class="eyebrow eyebrow--dark">Notre histoire</span>
+				<h2>La maison AROMA OËL</h2>
 				<p>AROMA OËL est née d'une conviction simple : la nature a toute sa place dans le quotidien, à condition de la rendre accessible par des gestes simples. Maison française de rituels naturels, portée par MAISON KAMEO, AROMA OËL sélectionne avec exigence des huiles essentielles, des huiles végétales et des poudres reconnues pour leur qualité.</p>
 				<a href="<?php echo esc_url( home_url( '/notre-histoire/' ) ); ?>" class="btn btn--secondary btn--small">Lire notre histoire</a>
 			</div>
@@ -180,7 +207,8 @@ get_header();
 	<section class="section section--alt">
 		<div class="container">
 			<div class="section-intro">
-				<h2>Le Journal</h2>
+				<span class="eyebrow eyebrow--dark">Le Journal</span>
+				<h2>Idées de rituels &amp; inspiration</h2>
 				<p>Des idées de rituels, des plantes racontées, des gestes simples à adopter.</p>
 			</div>
 			<div class="grid-3">
@@ -198,7 +226,6 @@ get_header();
 						</a>
 					<?php endwhile; wp_reset_postdata();
 				else :
-					// Espace réservé tant qu'aucun article n'est publié
 					for ( $i = 0; $i < 3; $i++ ) : ?>
 						<div class="journal-card">
 							<div class="thumb"><i class="ti ti-notebook" aria-hidden="true"></i></div>

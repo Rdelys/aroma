@@ -1,4 +1,8 @@
-<?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
+<?php if ( ! defined( 'ABSPATH' ) ) exit;
+
+$facebook_url  = get_theme_mod( 'aromaoel_facebook_url' );
+$instagram_url = get_theme_mod( 'aromaoel_instagram_url' );
+?>
 
 <footer class="site-footer">
 	<div class="container">
@@ -46,15 +50,23 @@
 
 		<div class="footer-bottom">
 			<span>© <?php echo esc_html( date( 'Y' ) ); ?> AROMA OËL — MAISON KAMEO. Tous droits réservés.</span>
+
+			<?php if ( $facebook_url || $instagram_url ) : ?>
 			<div class="footer-social">
-				<!-- Icônes masquées tant que les URL officielles ne sont pas validées (cf. Document 04, section Éléments manquants) -->
-				<!--
-				<a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
-				<a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook" aria-hidden="true"></i></a>
-				<a href="#" aria-label="TikTok"><i class="ti ti-brand-tiktok" aria-hidden="true"></i></a>
-				<a href="#" aria-label="YouTube"><i class="ti ti-brand-youtube" aria-hidden="true"></i></a>
-				-->
+				<?php if ( $facebook_url ) : ?>
+					<a href="<?php echo esc_url( $facebook_url ); ?>" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+						<i class="ti ti-brand-facebook" aria-hidden="true"></i>
+					</a>
+				<?php endif; ?>
+				<?php if ( $instagram_url ) : ?>
+					<a href="<?php echo esc_url( $instagram_url ); ?>" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+						<i class="ti ti-brand-instagram" aria-hidden="true"></i>
+					</a>
+				<?php endif; ?>
 			</div>
+			<?php endif; ?>
+			<!-- Règle Brand Book : seuls les réseaux dont l'URL officielle est validée sont affichés.
+			     Renseignez les URL dans Apparence > Personnaliser > AROMA OËL — Réseaux sociaux -->
 		</div>
 	</div>
 </footer>
