@@ -2,6 +2,9 @@
 
 $facebook_url  = get_theme_mod( 'aromaoel_facebook_url' );
 $instagram_url = get_theme_mod( 'aromaoel_instagram_url' );
+$linkedin_url  = get_theme_mod( 'aromaoel_linkedin_url' );
+$snapchat_url  = get_theme_mod( 'aromaoel_snapchat_url' );
+$has_social    = $facebook_url || $instagram_url || $linkedin_url || $snapchat_url;
 ?>
 
 <footer class="site-footer">
@@ -51,7 +54,7 @@ $instagram_url = get_theme_mod( 'aromaoel_instagram_url' );
 		<div class="footer-bottom">
 			<span>© <?php echo esc_html( date( 'Y' ) ); ?> AROMA OËL — MAISON KAMEO. Tous droits réservés.</span>
 
-			<?php if ( $facebook_url || $instagram_url ) : ?>
+			<?php if ( $has_social ) : ?>
 			<div class="footer-social">
 				<?php if ( $facebook_url ) : ?>
 					<a href="<?php echo esc_url( $facebook_url ); ?>" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
@@ -61,6 +64,16 @@ $instagram_url = get_theme_mod( 'aromaoel_instagram_url' );
 				<?php if ( $instagram_url ) : ?>
 					<a href="<?php echo esc_url( $instagram_url ); ?>" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
 						<i class="ti ti-brand-instagram" aria-hidden="true"></i>
+					</a>
+				<?php endif; ?>
+				<?php if ( $linkedin_url ) : ?>
+					<a href="<?php echo esc_url( $linkedin_url ); ?>" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+						<i class="ti ti-brand-linkedin" aria-hidden="true"></i>
+					</a>
+				<?php endif; ?>
+				<?php if ( $snapchat_url ) : ?>
+					<a href="<?php echo esc_url( $snapchat_url ); ?>" aria-label="Snapchat" target="_blank" rel="noopener noreferrer">
+						<i class="ti ti-brand-snapchat" aria-hidden="true"></i>
 					</a>
 				<?php endif; ?>
 			</div>
