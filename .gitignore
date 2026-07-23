@@ -23,3 +23,5 @@ vendor/
 .cache/
 wp-content/uploads/
 wp-content/uploads/
+
+.htaccess
